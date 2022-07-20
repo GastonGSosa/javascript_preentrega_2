@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gastón Sosa, preentrega 2: Juego 'Duque'</title>
+    <link rel="stylesheet" href="https://bootswatch.com/5/sketchy/bootstrap.min.css">
+</head>
+<body style="scroll-behavior: smooth; padding:2%;" class="container" style="max-height: 100vh;">
+    <header class="row">
+        <h1 class="text-center">Javascript Preentrega Nº2: Juego "DUQUE" - Alumno Gastón Sosa </h1>
+        <hr>
+        <br>
+    
+    <!-- Boton modal -->
+        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#explicacionModal">
+            Explicación
+        </button>
+        <br><br>
+        <hr>
+        <br>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="explicacionModal" tabindex="-1" aria-labelledby="explicacionModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="explicacionModalLabel">Qué es Duque?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                Duque es un juego TCG - Un juego de cartas al estilo Magic The Gathering.
+                <br><br>
+                ¿Y de qué se trata? <br>
+                Hay una tierra enorme, pero hay 2 herederos que se la disputarán. El tema es que sólo hay un puñado 
+                de personajes en la tierra, entonces el ejército se dividirá entre los 2 posibles Duques.
+                <br><br>
+                ¿Y cómo se juega? <br>
+                Hay 5 clasificaciones de personajes: Básicos, Normales, Raros, Épicos y Legendarios. <br>
+                Por cada clasificación hay 2 opciones, pero sólo podrás elegir una, la otra irá para tu rival, así que elige con cuidado. <br>
+                Una vez que hayas armado tu ejército (que consistira en un personaje por clase), comenzará la batalla. <br>
+                Se tirará un dado, y quien saque el número más alto atacará primero! <br>
+                El primero que se quede sin personajes, será el perdedor. <br>
+                Sin embargo, puedes elegir el orden en qué combatirán tus personajes, será el orden en que vayas eligiendo las cartas!<br>
+                Pero recuerda que el rival siempre jugará del rango más bajo al rango más alto, ten esto en cuenta para planear tu estrategia!
+
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Entendido!</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </header>
+    <main id="main">
+        <div class="container text-center" id="divCartas">
+
+            <form id="idForm">
+                <div class="mb-3">
+                  <label for="nombreJugador" class="form-label">Ingresa tu nombre!</label>
+                  <input type="text" class="form-control" id="nombreJugador" name="nombreJugador">
+                </div>
+                <button type="submit" class="btn btn-primary" id="botonNombre">listo! </button>
+              </form>
+
+            <br>
+            <h2 class="text-center" id="presentacionJugador">Por favor, elija una carta de cada rango!</h2>
+            <br>
+            <hr>
+        
+            <h3>Cartas básicas: </h3>
+            <div id="divBasicas" class="container row align-self-center">
+            </div>
+            <hr>
+        
+            <h3>Cartas Normales: </h3>
+            <div id="divNormales" class="container row align-self-center">
+            </div>
+            <hr>
+        
+            <h3>Cartas Raras: </h3>
+            <div id="divRaras" class="container row align-self-center">
+            </div>
+            <hr>
+        
+            <h3>Cartas Épicas: </h3>
+            <div id="divEpicas" class="container row align-self-center">
+            </div>
+            <hr>
+        
+            <h3>Cartas Legendarias: </h3>
+            <div id="divLegendarias" class="container row align-self-center">
+            </div>
+
+            <br><hr><br>
+            
+            <button class="btn btn-primary btn-lg" id="botonBatalla"> Ya estoy listo, a la batalla!</button>
+          </div>
+            <div id="manos" class="container">
+                <div class="container">
+                    <div class="col">
+                        <br><hr>
+                        <h5 id="labelCartasJugador">Cartas del Jugador: </h5>
+                        <div class="card-group" id="divCartasJugador">
+
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div id="cancelar" class="container">
+                </div>
+                <div id="batallar" class="container">
+
+                </div>
+
+                <div class="container">
+                    <div class="col-12">
+                        <br><hr><br>
+                        <h5>Cartas del Rival: </h5>
+                        <div class="card-group" id="divCartasRival">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="batallar" class="container">
+                <div class="row text-center">
+                    <div class="col-12" id="botonTurno">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4" id="colCartaJugador"></div>
+                    <div class="col-4 overflow-auto" id="colTexto" style="background-color:#EDDFB3;"></div>
+                    <div class="col-4" id="colCartaRival"></div>
+                </div>
+            </div>
+            
+            
+            <h3 class="h1 text-center" style="color:red;" id="alertaErrorBatalla"></h3>
+          </div>
+
+    </main>
+    
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="js/main.js"></script>
+    
+
+</body>
+</html>
